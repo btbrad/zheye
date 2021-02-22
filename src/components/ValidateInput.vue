@@ -12,7 +12,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, PropType } from 'vue'
+import { defineComponent, reactive, PropType, onMounted } from 'vue'
+import { emitter } from './ValidateForm.vue'
+
 const emailReg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
 interface RuleProp {
   type: 'required' | 'email';
@@ -57,8 +59,13 @@ export default defineComponent({
         })
         inputRef.error = !allPassed
         console.log('校验结果', inputRef.error)
+        return allPassed
       }
+      return true
     }
+    onMounted(() => {
+      emitter.emit('form-item-created', validateInput)
+    })
     return {
       inputRef,
       validateInput,
