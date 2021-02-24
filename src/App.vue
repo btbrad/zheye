@@ -13,8 +13,8 @@ import GlobalHeader, { UserProps } from './components/GlobalHeader.vue'
 import Footer from './components/Footer.vue'
 
 const currentUser: UserProps = {
-  isLogin: true,
-  name: 'btbrad'
+  isLogin: false,
+  name: ''
 }
 
 export default defineComponent({
