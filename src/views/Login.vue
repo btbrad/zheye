@@ -18,6 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
 import ValidateInput, { RuleProps } from '@/components/ValidateInput.vue'
 import ValidateForm from '@/components/ValidateForm.vue'
 
@@ -28,6 +29,7 @@ export default defineComponent({
     ValidateForm
   },
   setup () {
+    const router = useRouter()
     const emailValue = ''
     const passwordValue = ''
     const emailRules: RuleProps = [
@@ -39,6 +41,9 @@ export default defineComponent({
     ]
     const onFormSubmit = (valid: boolean) => {
       console.log('onFormSubmit', valid)
+      if (valid) {
+        router.push({ path: '/' })
+      }
     }
     return {
       emailRules,
